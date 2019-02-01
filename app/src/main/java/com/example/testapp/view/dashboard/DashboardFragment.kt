@@ -33,8 +33,6 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
             courseTv.visibility = if (it) View.GONE else View.VISIBLE
             dashboard_loader.initLoader(it)
         }
-
-        vm.getCurrencyRateFromCashe()
     }
 
     override fun listenToUi() {

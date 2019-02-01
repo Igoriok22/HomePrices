@@ -137,7 +137,7 @@ class CameraFragment : BaseFragment(R.layout.camera_layout) {
         val matcher = pattern.matcher(text)
         return if (matcher.find()) {
             var rate: Double = matcher.group(1).toDouble() * rateValue
-            rate.toString()
+           getString(R.string.camera_price, rate)
         } else "Неможливо визначити"
     }
 

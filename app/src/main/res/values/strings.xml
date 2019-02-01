@@ -16,4 +16,5 @@
     <string name="dashboard_page_title">Виберіть з якої і в яку валюту будете конвертувати</string>
 
     <string name="dashboard_current_rate">Курс %1$,.2f</string>
+    <string name="camera_price">%1$,.2f</string>
 </resources>
