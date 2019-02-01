@@ -11,7 +11,7 @@ class MainViewModel(
 ) : BaseViewModel(router, schedulers) {
 
 
-    fun goToCamera() { router.newRootScreen(Screens.Camera()) }
-    fun goToDashboard() { router.newRootScreen(Screens.Dashboard()) }
+    fun goToCamera() { router.navigateTo(Screens.Camera()) }
+    fun goToDashboard() { router.navigateTo(Screens.Dashboard()) }
 
 }

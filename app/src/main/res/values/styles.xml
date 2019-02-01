@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
         <!-- specify enter and exit transitions -->
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
@@ -13,6 +14,14 @@
 
     <style name="Dark.Overlay" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:background">?attr/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.DefaultLottieLoader">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="lottie_loop">true</item>
+        <item name="lottie_rawRes">@raw/loader</item>
     </style>
 
 </resources>

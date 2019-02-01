@@ -10,4 +10,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="txt_message">Тут буде ваша ціна</string>
+    <string name="convert_to">переводити в</string>
+    <string name="accept_bt">Прийняти</string>
+    <string name="go_to_camera">Перейти до камери</string>
+    <string name="dashboard_page_title">Виберіть з якої і в яку валюту будете конвертувати</string>
 </resources>
