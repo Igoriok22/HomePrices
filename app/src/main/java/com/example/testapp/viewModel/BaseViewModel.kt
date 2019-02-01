@@ -2,6 +2,7 @@ package com.example.testapp.viewModel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.util.Log
 import com.example.testapp.system.ISchedulers
 import com.example.testapp.utils.SingleLiveEvent
 import com.example.testapp.utils.extensions.doOnIoResultOnUi
@@ -23,7 +24,7 @@ abstract class BaseViewModel(
 
 
     open fun handleError(e: Throwable) {
-
+        Log.d("ERROR", "ERROR = ${e.message}")
     }
 
     fun <T> Single<T>.defaultLoader() = setupLoader { isLoading.value = it }

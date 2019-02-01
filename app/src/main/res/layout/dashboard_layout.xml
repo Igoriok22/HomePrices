@@ -86,7 +86,7 @@
 
         <com.airbnb.lottie.LottieAnimationView
             style="@style/AppTheme.DefaultLottieLoader"
-            android:id="@+id/round_ups_loader"
+            android:id="@+id/dashboard_loader"
             android:gravity="center"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"

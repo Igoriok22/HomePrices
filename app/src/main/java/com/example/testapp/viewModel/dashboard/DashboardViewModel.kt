@@ -1,13 +1,33 @@
 package com.example.testapp.viewModel.dashboard
 
-import com.example.testapp.domain.implementations.SetupInteractor
+import android.arch.lifecycle.MutableLiveData
+import com.example.testapp.domain.interfaces.IDashboardInteractor
 import com.example.testapp.system.ISchedulers
+import com.example.testapp.utils.MutableDisposable
 import com.example.testapp.viewModel.BaseViewModel
 import ru.terrakok.cicerone.Router
 
 class DashboardViewModel(
         router: Router,
-        shedulers: ISchedulers,
-        interactor: SetupInteractor): BaseViewModel(router,shedulers){
+        schedulers: ISchedulers,
+        var dashboardInteractor: IDashboardInteractor): BaseViewModel(router,schedulers){
 
+    private val md = MutableDisposable()
+    var currencyRate = MutableLiveData<Double>()
+
+    fun getCurrencyRate(query: String) {
+        md.disposable = dashboardInteractor.getExchangeRate(query)
+                .manageSchedulers()
+                .defaultLoader()
+                .subscribe(::setCurrencyRateToView, ::handleError)
+    }
+
+    fun getCurrencyRateFromCashe() {
+        md.disposable = dashboardInteractor.getStorageExchangeRate()
+                .subscribe(::setCurrencyRateToView, ::handleError)
+    }
+
+    private fun setCurrencyRateToView(rate: Double){
+        currencyRate.value = rate
+    }
 }

@@ -3,6 +3,8 @@ package com.example.testapp.view.dashboard
 import android.view.View
 import android.widget.AdapterView
 import com.example.testapp.R
+import com.example.testapp.utils.extensions.initLoader
+import com.example.testapp.utils.extensions.nonNullObserve
 import com.example.testapp.view.BaseFragment
 import com.example.testapp.view.ToolbarDescription
 import com.example.testapp.view.ToolbarIcon
@@ -20,11 +22,19 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
     private val localCurrencyModel = LocalCurrencyModel()
     private var foreignCurrencyRequest: String = "EUR"
     private var nativeCurrencyRequest: String = "EUR"
+    private var divider: String = "_"
 
     private val vm: DashboardViewModel by viewModel()
 
     override fun listenToVm() {
+        vm.currencyRate.nonNullObserve(this@DashboardFragment) { updateUI(it) }
 
+        vm.isLoading.nonNullObserve(this@DashboardFragment) {
+            courseTv.visibility = if (it) View.GONE else View.VISIBLE
+            dashboard_loader.initLoader(it)
+        }
+
+        vm.getCurrencyRateFromCashe()
     }
 
     override fun listenToUi() {
@@ -47,6 +57,10 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+
+        accept_bt.setOnClickListener {
+            vm.getCurrencyRate("$foreignCurrencyRequest$divider$nativeCurrencyRequest")
+        }
     }
 
     private fun initViews(){
@@ -57,6 +71,9 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
         nativeСurrencySpinner.adapter = nativeCurrencyAdapter
     }
 
+    private fun updateUI(rate: Double){
+        courseTv.text = getString(R.string.dashboard_current_rate, rate)
+    }
 
     companion object {
         fun newInstance() = DashboardFragment()

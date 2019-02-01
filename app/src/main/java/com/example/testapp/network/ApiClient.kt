@@ -40,5 +40,5 @@ object ApiClient {
         return retrofit.create(OmniViewApi::class.java)
     }
 
-    private const val API_ENDPOINT = "https://api.myjson.com"
+    private const val API_ENDPOINT = "http://free.currencyconverterapi.com"
 }

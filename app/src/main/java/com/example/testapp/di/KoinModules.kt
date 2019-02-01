@@ -1,14 +1,13 @@
 package com.example.testapp.di
 
-import com.example.testapp.domain.implementations.SetupInteractor
-import com.example.testapp.domain.interfaces.ISetupInteractor
+import com.example.testapp.domain.implementations.DashboardInteractor
+import com.example.testapp.domain.interfaces.IDashboardInteractor
 import com.example.testapp.network.ApiClient
-import com.example.testapp.repository.implementations.AuthRepository
-import com.example.testapp.repository.implementations.ProfileRepository
-import com.example.testapp.repository.interfaces.IAuthRepository
-import com.example.testapp.repository.interfaces.IProfileRepository
+import com.example.testapp.repository.implementations.DashboardRepository
+import com.example.testapp.repository.interfaces.IDashboardRepository
 import com.example.testapp.system.AppSchedulers
 import com.example.testapp.system.ISchedulers
+import com.example.testapp.utils.HawkStorage
 import com.example.testapp.viewModel.camera.CameraViewModel
 import com.example.testapp.viewModel.dashboard.DashboardViewModel
 import com.example.testapp.viewModel.main.MainViewModel
@@ -25,11 +24,13 @@ val appModule = module {
 
     single<ISchedulers> { AppSchedulers() }
     //interactors
-    single<ISetupInteractor> { SetupInteractor(get(), get()) }
+    single<IDashboardInteractor> { DashboardInteractor(get()) }
 
     //repositories
-    single<IAuthRepository> { AuthRepository() }
-    single<IProfileRepository> { ProfileRepository(get()) }
+    single<IDashboardRepository> { DashboardRepository(get(), get()) }
+
+    //storage
+    single { HawkStorage() }
 
     //network
     single { ApiClient.getLogginInterceptor() }

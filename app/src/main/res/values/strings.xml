@@ -14,4 +14,6 @@
     <string name="accept_bt">Прийняти</string>
     <string name="go_to_camera">Перейти до камери</string>
     <string name="dashboard_page_title">Виберіть з якої і в яку валюту будете конвертувати</string>
+
+    <string name="dashboard_current_rate">Курс %1$,.2f</string>
 </resources>

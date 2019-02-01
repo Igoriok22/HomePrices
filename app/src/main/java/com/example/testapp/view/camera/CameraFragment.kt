@@ -6,6 +6,7 @@ import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.view.SurfaceHolder
 import com.example.testapp.R
+import com.example.testapp.utils.extensions.nonNullObserve
 import com.example.testapp.view.BaseFragment
 import com.example.testapp.view.ToolbarDescription
 import com.example.testapp.view.ToolbarIcon
@@ -29,12 +30,17 @@ class CameraFragment : BaseFragment(R.layout.camera_layout) {
 
     private lateinit var cameraSource: CameraSource
 
+    private var rateValue: Double = 1.0
+
     override fun listenToVm() {
-        initCameraSource()
+        vm.currencyRateMultiplier.nonNullObserve(this@CameraFragment){
+            rateValue = it
+        }
+        vm.getCurrencyRate()
     }
 
     override fun listenToUi() {
-
+        initCameraSource()
     }
 
     private fun initCameraSource(){
@@ -130,7 +136,8 @@ class CameraFragment : BaseFragment(R.layout.camera_layout) {
     private fun getDigitalFromString(text: String): String {
         val matcher = pattern.matcher(text)
         return if (matcher.find()) {
-            matcher.group(1)
+            var rate: Double = matcher.group(1).toDouble() * rateValue
+            rate.toString()
         } else "Неможливо визначити"
     }
 
