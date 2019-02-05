@@ -16,5 +16,8 @@ class DashboardRepository(
 
     override fun getExchangeRate(query: String): Single<CurrentExchangeRate> = api.getExchangeRate(query)
             .handleNetwork()
-            .doOnSuccess { storage.put(it) }
+            .doOnSuccess {
+                it.currentExchangeRateSymbols = query
+                storage.put(it)
+            }
 }

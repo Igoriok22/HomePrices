@@ -2,7 +2,7 @@ package com.example.testapp.view.camera
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.SurfaceHolder
 import com.example.testapp.R
@@ -22,7 +22,9 @@ import java.util.regex.Pattern
 
 class CameraFragment : BaseFragment(R.layout.camera_layout) {
 
-    override val toolbarDescription: ToolbarDescription = ToolbarDescription(true, ToolbarIcon.HAMBURGER, R.string.camera_title, null)
+    override val toolbarDescription: ToolbarDescription = ToolbarDescription(true, ToolbarIcon.ARROW, R.string.camera_title, null)
+    override val isDrawerEnabled: Boolean
+        get() = false
 
     private val vm: CameraViewModel by viewModel()
 
@@ -64,13 +66,8 @@ class CameraFragment : BaseFragment(R.layout.camera_layout) {
             surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
                 override fun surfaceCreated(holder: SurfaceHolder) {
                     try {
-
-                        if (ActivityCompat.checkSelfPermission(context!!,
-                                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-
-                            ActivityCompat.requestPermissions(activity!!,
-                                    arrayOf(Manifest.permission.CAMERA),
-                                    requestPermissionID)
+                        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            requestPermissions(arrayOf(Manifest.permission.CAMERA), requestPermissionID)
                             return
                         }
                         cameraSource.start(surfaceView.holder)
@@ -122,10 +119,10 @@ class CameraFragment : BaseFragment(R.layout.camera_layout) {
 
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             try {
-                if (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     return
                 }
-                cameraSource.start(surfaceView.getHolder())
+                cameraSource.start(surfaceView.holder)
             } catch (e: IOException) {
                 e.printStackTrace()
             }

@@ -2,6 +2,7 @@ package com.example.testapp.viewModel.dashboard
 
 import android.arch.lifecycle.MutableLiveData
 import com.example.testapp.domain.interfaces.IDashboardInteractor
+import com.example.testapp.domain.model.CurrentExchangeRateCacheModel
 import com.example.testapp.system.ISchedulers
 import com.example.testapp.utils.MutableDisposable
 import com.example.testapp.viewModel.BaseViewModel
@@ -15,6 +16,9 @@ class DashboardViewModel(
     private val md = MutableDisposable()
     var currencyRate = MutableLiveData<Double>()
 
+    var foreignSpinerPosition = MutableLiveData<Int>()
+    var nativeSpinnerPosition = MutableLiveData<Int>()
+
     fun getCurrencyRate(query: String) {
         md.disposable = dashboardInteractor.getExchangeRate(query)
                 .manageSchedulers()
@@ -27,7 +31,9 @@ class DashboardViewModel(
                 .subscribe(::setCurrencyRateToView, ::handleError)
     }
 
-    private fun setCurrencyRateToView(rate: Double){
-        currencyRate.value = rate
+    private fun setCurrencyRateToView(result: CurrentExchangeRateCacheModel){
+        currencyRate.value = result.currentRate
+        foreignSpinerPosition.value = result.foreignSpinerPosition
+        nativeSpinnerPosition.value=result.nativeSpinnerPosition
     }
 }

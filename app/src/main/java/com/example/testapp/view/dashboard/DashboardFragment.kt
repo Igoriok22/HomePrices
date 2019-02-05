@@ -16,8 +16,8 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
 
     override val toolbarDescription: ToolbarDescription = ToolbarDescription(true, ToolbarIcon.HAMBURGER, R.string.dashboard_title, null)
 
-    lateinit var foreignCurrencyAdapter: CurrencysAdapter
-    lateinit var nativeCurrencyAdapter: CurrencysAdapter
+    private lateinit var foreignCurrencyAdapter: CurrencysAdapter
+    private lateinit var nativeCurrencyAdapter: CurrencysAdapter
 
     private val localCurrencyModel = LocalCurrencyModel()
     private var foreignCurrencyRequest: String = "EUR"
@@ -28,6 +28,8 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
 
     override fun listenToVm() {
         vm.currencyRate.nonNullObserve(this@DashboardFragment) { updateUI(it) }
+        vm.foreignSpinerPosition.nonNullObserve(this@DashboardFragment){ foreignСurrencySpinner.setSelection(it) }
+        vm.nativeSpinnerPosition.nonNullObserve(this@DashboardFragment) {nativeСurrencySpinner.setSelection(it) }
 
         vm.isLoading.nonNullObserve(this@DashboardFragment) {
             courseTv.visibility = if (it) View.GONE else View.VISIBLE
@@ -37,6 +39,7 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
 
     override fun listenToUi() {
         initViews()
+        getCache()
 
         foreignСurrencySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
@@ -71,6 +74,10 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
 
     private fun updateUI(rate: Double){
         courseTv.text = getString(R.string.dashboard_current_rate, rate)
+    }
+
+    private fun getCache(){
+        vm.getCurrencyRateFromCashe()
     }
 
     companion object {

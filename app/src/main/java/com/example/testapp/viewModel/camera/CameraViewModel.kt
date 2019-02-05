@@ -2,6 +2,7 @@ package com.example.testapp.viewModel.camera
 
 import android.arch.lifecycle.MutableLiveData
 import com.example.testapp.domain.interfaces.IDashboardInteractor
+import com.example.testapp.domain.model.CurrentExchangeRateCacheModel
 import com.example.testapp.system.ISchedulers
 import com.example.testapp.utils.MutableDisposable
 import com.example.testapp.viewModel.BaseViewModel
@@ -21,7 +22,7 @@ class CameraViewModel (
                 .subscribe(::setCurrencyRateToView, ::handleError)
     }
 
-    private fun setCurrencyRateToView(rate: Double){
-        currencyRateMultiplier.value = rate
+    private fun setCurrencyRateToView(result: CurrentExchangeRateCacheModel){
+        currencyRateMultiplier.value = result.currentRate
     }
 }
