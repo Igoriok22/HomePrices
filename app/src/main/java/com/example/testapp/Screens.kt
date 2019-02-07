@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import com.example.testapp.view.MainActivity
 import com.example.testapp.view.camera.CameraFragment
 import com.example.testapp.view.dashboard.DashboardFragment
+import com.example.testapp.view.dialog.AddNewProductDialog
 import com.example.testapp.view.purchasesarchive.PurchasesArchiveFragment
 import com.example.testapp.view.shoppinglist.ShoppingListFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen

@@ -24,4 +24,13 @@
         <item name="lottie_rawRes">@raw/loader</item>
     </style>
 
+    <style name="EditTextLayout" parent="TextAppearance.AppCompat">
+        <item name="android:textColorHint">@color/colorText</item>
+    </style>
+
+    <style name="TextLabel" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorText</item>
+    </style>
+
 </resources>

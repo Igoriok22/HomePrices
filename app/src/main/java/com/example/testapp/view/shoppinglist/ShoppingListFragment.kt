@@ -8,6 +8,7 @@ import com.example.testapp.utils.extensions.nonNullObserve
 import com.example.testapp.view.BaseFragment
 import com.example.testapp.view.ToolbarDescription
 import com.example.testapp.view.ToolbarIcon
+import com.example.testapp.view.dialog.AddNewProductDialog
 import com.example.testapp.viewModel.shoppinglist.ShoppingListViewModel
 import kotlinx.android.synthetic.main.shopping_list_fragment.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -22,6 +23,8 @@ class ShoppingListFragment : BaseFragment(R.layout.shopping_list_fragment) {
     private var date: String? = ""
     lateinit var shoppingListAdapter: ShoppingListAdapter
 
+    private val addNewProductDialog: AddNewProductDialog by lazy { AddNewProductDialog.newInstance()}
+
     override fun listenToVm() {
         vm.apply {
             shoppingList.nonNullObserve(this@ShoppingListFragment){ setData(it.products)}
@@ -31,7 +34,7 @@ class ShoppingListFragment : BaseFragment(R.layout.shopping_list_fragment) {
 
     override fun listenToUi() {
         initViews()
-        addNewProduct.setOnClickListener {  }
+        addNewProduct.setOnClickListener { addNewProductDialog.show(fragmentManager, tag) }
     }
 
     private fun initViews(){
