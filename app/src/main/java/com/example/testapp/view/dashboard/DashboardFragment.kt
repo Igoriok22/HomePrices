@@ -77,7 +77,7 @@ class DashboardFragment: BaseFragment(R.layout.dashboard_layout) {
     }
 
     private fun getCache(){
-        vm.getCurrencyRateFromCashe()
+        vm.getCurrencyRateFromCache()
     }
 
     companion object {

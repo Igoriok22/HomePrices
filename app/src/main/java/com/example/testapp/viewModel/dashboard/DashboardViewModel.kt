@@ -26,7 +26,7 @@ class DashboardViewModel(
                 .subscribe(::setCurrencyRateToView, ::handleError)
     }
 
-    fun getCurrencyRateFromCashe() {
+    fun getCurrencyRateFromCache() {
         md.disposable = dashboardInteractor.getStorageExchangeRate()
                 .subscribe(::setCurrencyRateToView, ::handleError)
     }

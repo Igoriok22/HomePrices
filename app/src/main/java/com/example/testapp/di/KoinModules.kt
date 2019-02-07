@@ -11,6 +11,8 @@ import com.example.testapp.utils.HawkStorage
 import com.example.testapp.viewModel.camera.CameraViewModel
 import com.example.testapp.viewModel.dashboard.DashboardViewModel
 import com.example.testapp.viewModel.main.MainViewModel
+import com.example.testapp.viewModel.purchasesarchive.PurchasesArchiveViewModel
+import com.example.testapp.viewModel.shoppinglist.ShoppingListViewModel
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 import ru.terrakok.cicerone.Cicerone
@@ -42,4 +44,6 @@ val appModule = module {
     viewModel { MainViewModel(get(), get()) }
     viewModel { DashboardViewModel(get(), get(), get()) }
     viewModel { CameraViewModel(get(), get(), get()) }
+    viewModel { PurchasesArchiveViewModel(get(), get(), get()) }
+    viewModel { ShoppingListViewModel(get(), get(), get()) }
 }

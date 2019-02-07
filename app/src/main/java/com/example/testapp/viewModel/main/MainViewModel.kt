@@ -13,5 +13,6 @@ class MainViewModel(
 
     fun goToCamera() { router.navigateTo(Screens.Camera()) }
     fun goToDashboard() { router.navigateTo(Screens.Dashboard()) }
+    fun goToShoppingList() { router.navigateTo(Screens.PurchasesArchive()) }
 
 }

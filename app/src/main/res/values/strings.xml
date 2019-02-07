@@ -2,9 +2,11 @@
     <string name="app_name">HomePrices</string>
     <string name="dashboard">Dashboard</string>
     <string name="camera">Camera</string>
+    <string name="shopping_list">Shopping list </string>
 
     <string name="dashboard_title">Dashboard</string>
     <string name="camera_title">Camera</string>
+    <string name="purchases_archive_title">Purchases archive</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,4 +19,9 @@
 
     <string name="dashboard_current_rate">Курс %1$,.2f</string>
     <string name="camera_price">%1$,.2f</string>
+    <string name="empty_archive_list">Ви ще немаєте жодних списків</string>
+    <string name="empty_products_list">Ви ще немаєте жодних продуктів\n щоб додати натисніть на +</string>
+    <string name="name_of_product">Назва</string>
+    <string name="number_of_product">к-ть</string>
+    <string name="price_of_product">ціна</string>
 </resources>

@@ -27,6 +27,7 @@ class MainActivity : BaseActivity() {
     private fun listenToMenu() {
        nav_dashboard.onItemClick { vm.goToDashboard() }
        nav_camera.onItemClick { vm.goToCamera() }
+        nav_shopping_list.onItemClick { vm.goToShoppingList() }
     }
 
     fun enableDrawer(){
