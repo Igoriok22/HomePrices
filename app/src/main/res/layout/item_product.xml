@@ -51,8 +51,8 @@
 
     <ImageView
         android:id="@+id/touchIv"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:src="@drawable/ic_touch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

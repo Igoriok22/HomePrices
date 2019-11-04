@@ -43,4 +43,8 @@ class HawkStorage {
     }
 
     fun dropStorage(): Boolean = Hawk.deleteAll()
+
+    companion object {
+        const val DATES = "dates"
+    }
 }

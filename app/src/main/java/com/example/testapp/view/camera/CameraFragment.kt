@@ -22,9 +22,9 @@ import java.util.regex.Pattern
 
 class CameraFragment : BaseFragment(R.layout.camera_layout) {
 
-    override val toolbarDescription: ToolbarDescription = ToolbarDescription(true, ToolbarIcon.ARROW, R.string.camera_title, null)
+    override val toolbarDescription: ToolbarDescription = ToolbarDescription(true, ToolbarIcon.HAMBURGER, R.string.camera_title, null)
     override val isDrawerEnabled: Boolean
-        get() = false
+        get() = true
 
     private val vm: CameraViewModel by viewModel()
 

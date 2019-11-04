@@ -2,7 +2,7 @@ package com.example.testapp.domain.model
 
 data class ShoppingList(
         var date: String,
-        var products: List<Product>
+        var products: MutableList<Product>
 
 )
 

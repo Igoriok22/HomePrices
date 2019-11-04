@@ -19,7 +19,7 @@ class PurchasesArchiveFragment : BaseFragment(R.layout.purchases_archive_layout)
 
     private val vm: PurchasesArchiveViewModel by viewModel()
     lateinit var purchasesArchiveAdapter: PurchasesArchiveAdapter
-    private var archileList: List<String>? = null
+    private var archiveList: List<String>? = null
 
     override fun listenToVm() {
         vm.apply {
@@ -35,14 +35,14 @@ class PurchasesArchiveFragment : BaseFragment(R.layout.purchases_archive_layout)
 
     private fun initViews(){
         purchasesArchiveAdapter = PurchasesArchiveAdapter { position ->
-            vm.goToShopingList(archileList!![position])
+            vm.goToShopingList(archiveList!![position])
         }
         archiveRv.layoutManager = LinearLayoutManager(context)
         archiveRv.adapter = purchasesArchiveAdapter
     }
 
     private fun setData(dates: List<String>){
-        this.archileList = dates
+        this.archiveList = dates
         if(dates.isEmpty()){
             emptyHolder.visibility = View.VISIBLE
         }else {

@@ -20,20 +20,25 @@ class ShoppingListFragment : BaseFragment(R.layout.shopping_list_fragment) {
         get() = false
 
     private val vm: ShoppingListViewModel by viewModel()
-    private var date: String? = ""
-    lateinit var shoppingListAdapter: ShoppingListAdapter
+    private var date: String = ""
+    private lateinit var shoppingListAdapter: ShoppingListAdapter
 
     private val addNewProductDialog: AddNewProductDialog by lazy { AddNewProductDialog.newInstance()}
 
     override fun listenToVm() {
         vm.apply {
             shoppingList.nonNullObserve(this@ShoppingListFragment){ setData(it.products)}
-            getShoppingList(date!!)
+            getShoppingList(date)
         }
     }
 
     override fun listenToUi() {
         initViews()
+        addNewProductDialog.setOnClickListener(object: AddNewProductDialog.DialogClickListener{
+            override fun onAcceptClick(product: Product) {
+                vm.saveInShopingList(date, product)
+            }
+        })
         addNewProduct.setOnClickListener { addNewProductDialog.show(fragmentManager, tag) }
     }
 

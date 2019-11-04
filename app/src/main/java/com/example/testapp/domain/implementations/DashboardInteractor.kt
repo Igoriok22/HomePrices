@@ -2,8 +2,10 @@ package com.example.testapp.domain.implementations
 
 import com.example.testapp.domain.interfaces.IDashboardInteractor
 import com.example.testapp.domain.model.CurrentExchangeRateCacheModel
+import com.example.testapp.domain.model.Product
 import com.example.testapp.domain.model.ShoppingList
 import com.example.testapp.repository.interfaces.IDashboardRepository
+import io.reactivex.Completable
 import io.reactivex.Single
 
 class DashboardInteractor(
@@ -19,7 +21,8 @@ class DashboardInteractor(
 
    override fun getArchiveList(): Single<List<String>> = dashboardRepository.getArchiveList()
 
-   override fun getShoppingList(key: String) = dashboardRepository.getShoppingList(key)
+   override fun getShoppingList(date: String) = dashboardRepository.getShoppingList(date)
 
+   override fun saveInShoppingList(date: String, product: Product) = dashboardRepository.saveInShopInShoppingList(date, product)
 
 }

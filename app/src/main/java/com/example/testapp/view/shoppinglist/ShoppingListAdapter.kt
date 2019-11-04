@@ -19,7 +19,7 @@ class ShoppingListAdapter (val listener: (position: Int) -> Unit): RecyclerView.
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         myList[position].let {
-            (holder as ViewHolder).bind(myList!![position])
+            (holder as ViewHolder).bind(myList[position])
         }
     }
 

@@ -27,8 +27,6 @@ class PurchasesArchiveViewModel (
 
     fun goToShopingList(date: String) = router.navigateTo(Screens.ShoppingList(date))
 
-
-
     private fun setArchiveListToView(dates: List<String>){
         archiveList.value = dates
     }
